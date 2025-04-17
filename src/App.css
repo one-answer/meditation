@@ -38,11 +38,64 @@ body {
   color: #4a5568;
 }
 
-/* Language Toggle Button */
-.language-toggle {
+/* Logo Container */
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* Navigation Links */
+.nav-links {
   position: absolute;
   top: 1rem;
   right: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-link {
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 1px solid #cbd5e0;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  color: #4a5568;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-link:hover {
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Back Button */
+.back-button {
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 1px solid #cbd5e0;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  color: #4a5568;
+  text-decoration: none;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Language Toggle Button */
+.language-toggle {
   background-color: rgba(255, 255, 255, 0.7);
   border: 1px solid #cbd5e0;
   border-radius: 20px;
@@ -50,11 +103,26 @@ body {
   font-size: 0.9rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .language-toggle:hover {
   background-color: white;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Icons Page */
+.icons-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.icons-container {
+  flex: 1;
+  padding: 2rem;
 }
 
 /* Main Container */
@@ -155,6 +223,12 @@ body {
   font-size: 1.2rem;
 }
 
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .pattern-buttons,
 .duration-buttons {
   display: flex;
@@ -171,6 +245,13 @@ button {
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
+}
+
+.sound-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 button:hover:not(:disabled) {
@@ -195,6 +276,10 @@ button.active {
   padding: 1rem 2rem;
   margin-top: 1rem;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
 }
 
 .start-meditation:hover {

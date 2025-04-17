@@ -26,7 +26,7 @@ const AudioPlayer = ({ playing, volume, source }) => {
   return (
     <audio 
       ref={audioRef}
-      src={`/sounds/${source}.mp3`} 
+      src={`/sounds/ocean-waves-250310.mp3`}
       loop
       preload="auto"
       style={{ display: 'none' }}
