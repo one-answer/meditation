@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import IconsDisplay from '../components/icons/IconsDisplay';
 import { useLanguage } from '../context/LanguageContext';
+import Quote from '../components/Quote';
 import { MeditationLogo } from '../components/icons/MeditationIcons';
 
 const IconsPage = () => {
@@ -26,7 +27,7 @@ const IconsPage = () => {
       </main>
 
       <footer className="app-footer">
-        <p>{texts.dailyQuote}</p>
+        <Quote showRefreshButton={true} />
       </footer>
     </div>
   );

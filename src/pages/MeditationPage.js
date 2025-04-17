@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import AudioPlayer from '../components/audio/AudioPlayer';
 import { useLanguage } from '../context/LanguageContext';
+import Quote from '../components/Quote';
 import {
   MeditationLogo,
   BreathingIcon,
@@ -354,7 +355,7 @@ function MeditationPage() {
       </main>
 
       <footer className="app-footer">
-        <p>{texts.dailyQuote}</p>
+        <Quote showRefreshButton={true} />
       </footer>
     </div>
   );
