@@ -44,7 +44,6 @@ function MeditationPage() {
   // Refs for timers
   const breathingTimerRef = useRef(null);
   const sessionTimerRef = useRef(null);
-  const audioRef = useRef(null);
 
   // Effect for breathing animation cycle
   useEffect(() => {
