@@ -1,8 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import './App.css';
 import AudioPlayer from './components/audio/AudioPlayer';
+import { useLanguage } from './context/LanguageContext';
 
 function App() {
+  // Get language context
+  const { texts, language, toggleLanguage } = useLanguage();
+
   // State for breathing pattern
   const [breathingPattern, setBreathingPattern] = useState({
     inhale: 4,
@@ -190,15 +194,20 @@ function App() {
       />
 
       <header className="app-header">
-        <h1>冥想 Meditation</h1>
-        <p>Breathe and relax</p>
+        <h1>冥想 {texts.appTitle}</h1>
+        <p>{texts.appSubtitle}</p>
+
+        {/* Language toggle button */}
+        <button className="language-toggle" onClick={toggleLanguage}>
+          {language === 'zh' ? 'English' : '中文'}
+        </button>
       </header>
 
       <main className="meditation-container">
         {/* Timer display */}
         <div className="timer-display">
           <h2>{formatTime(timeRemaining)}</h2>
-          <p>{isActive ? 'Meditation in progress' : 'Ready to begin'}</p>
+          <p>{isActive ? texts.meditationInProgress : texts.readyToBegin}</p>
         </div>
 
         {/* Breathing animation */}
@@ -210,12 +219,12 @@ function App() {
                               breathingPhase === 'exhale' ? 1.5 - phaseProgress * 0.5 : 1.5})`
             }}
           ></div>
-          <div className="breathing-text">{breathingPhase}</div>
+          <div className="breathing-text">{texts[breathingPhase]}</div>
           {isActive && (
             <div className="breathing-instruction">
-              {breathingPhase === 'inhale' && 'Breathe in slowly...'}
-              {breathingPhase === 'hold' && 'Hold your breath...'}
-              {breathingPhase === 'exhale' && 'Release slowly...'}
+              {breathingPhase === 'inhale' && texts.inhaleInstruction}
+              {breathingPhase === 'hold' && texts.holdInstruction}
+              {breathingPhase === 'exhale' && texts.exhaleInstruction}
             </div>
           )}
         </div>
@@ -223,63 +232,63 @@ function App() {
         {/* Controls panel */}
         <div className="controls-panel">
           <div className="breathing-patterns">
-            <h3>Breathing Pattern</h3>
+            <h3>{texts.breathingPatternTitle}</h3>
             <div className="pattern-buttons">
               <button
                 className={breathingPattern.name === 'Basic Relaxation' ? 'active' : ''}
                 onClick={() => changeBreathingPattern({inhale: 4, hold: 4, exhale: 6, name: 'Basic Relaxation'})}
                 disabled={isActive}
               >
-                Basic (4-4-6)
+                {texts.basicPattern}
               </button>
               <button
                 className={breathingPattern.name === 'Mindful Breathing' ? 'active' : ''}
                 onClick={() => changeBreathingPattern({inhale: 4, hold: 7, exhale: 8, name: 'Mindful Breathing'})}
                 disabled={isActive}
               >
-                Mindful (4-7-8)
+                {texts.mindfulPattern}
               </button>
               <button
                 className={breathingPattern.name === 'Deep Meditation' ? 'active' : ''}
                 onClick={() => changeBreathingPattern({inhale: 5, hold: 5, exhale: 5, name: 'Deep Meditation'})}
                 disabled={isActive}
               >
-                Deep (5-5-5)
+                {texts.deepPattern}
               </button>
             </div>
           </div>
 
           <div className="duration-control">
-            <h3>Duration</h3>
+            <h3>{texts.durationTitle}</h3>
             <div className="duration-buttons">
               <button
                 className={duration === 60 ? 'active' : ''}
                 onClick={() => changeDuration(60)}
                 disabled={isActive}
               >
-                1 min
+                {texts.oneMin}
               </button>
               <button
                 className={duration === 300 ? 'active' : ''}
                 onClick={() => changeDuration(300)}
                 disabled={isActive}
               >
-                5 min
+                {texts.fiveMin}
               </button>
               <button
                 className={duration === 600 ? 'active' : ''}
                 onClick={() => changeDuration(600)}
                 disabled={isActive}
               >
-                10 min
+                {texts.tenMin}
               </button>
             </div>
           </div>
 
           <div className="sound-control">
-            <h3>Background Sound</h3>
+            <h3>{texts.soundTitle}</h3>
             <button onClick={toggleSound}>
-              {sound.playing ? 'Mute' : 'Play'} Ocean Sounds
+              {sound.playing ? texts.muteSound : texts.playSound}
             </button>
             <input
               type="range"
@@ -297,14 +306,14 @@ function App() {
               className={`start-meditation ${isActive ? 'active' : ''}`}
               onClick={toggleMeditation}
             >
-              {isActive ? 'Stop' : 'Start'} Meditation
+              {isActive ? texts.stopMeditation : texts.startMeditation}
             </button>
           </div>
         </div>
       </main>
 
       <footer className="app-footer">
-        <p>Daily Meditation Quote: "Breathe in peace, breathe out tension."</p>
+        <p>{texts.dailyQuote}</p>
       </footer>
     </div>
   );
