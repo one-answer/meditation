@@ -9,17 +9,18 @@ const QuoteContext = createContext();
 export const QuoteProvider = ({ children }) => {
   const { language } = useLanguage();
   const [currentQuote, setCurrentQuote] = useState('');
-  
+
   // 初始化和语言变化时更新语录
   useEffect(() => {
     refreshQuote();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [language]);
-  
+
   // 刷新语录的函数
   const refreshQuote = () => {
     setCurrentQuote(getRandomQuote(language));
   };
-  
+
   return (
     <QuoteContext.Provider value={{ currentQuote, refreshQuote }}>
       {children}
